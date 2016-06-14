@@ -20,7 +20,7 @@ Plug 'fatih/vim-go'
 Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/nyaovim-markdown-preview'
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " general setting
@@ -58,7 +58,7 @@ nmap <silent> <C-x><C-p> :CtrlP<CR>
 nmap <silent> <C-x><C-b> :CtrlPBuffer<CR>
 nmap <silent> <C-x><C-o> :CtrlPCurWD<CR>
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  'node_modules\|DS_Store\|git\|vender',
+  \ 'dir':  'node_modules\|DS_Store\|git\|vendor',
   \ 'file': '\v\.(exe|so|dll)$',
   \ }
 
