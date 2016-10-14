@@ -1,17 +1,9 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# zim
+if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
+  source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
+fi
 
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="dracula"
-
-plugins=(git autojump)
-
-# User configuration
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
 
@@ -20,9 +12,10 @@ export CLICOLOR=1
 
 export PATH=/usr/local/sbin:$PATH
 
+# export EDITOR=vim # will cause tmux ctrl+p outputs ^P
+
 # phabricator
 export PATH=$HOME/Code/arcanist/bin:$PATH
-source $HOME/Code/arcanist/resources/shell/bash-completion
 
 # play framework
 export PATH=$HOME/Code/Java/play-1.2.5:$PATH
@@ -39,11 +32,12 @@ export gotest=$GOPATH/src/gotest
 # Python
 export PATH=$PATH:$HOME/Library/Python/2.7/bin
 
-export HOMEBREW_GITHUB_API_TOKEN=0c759035b18eb7f7ca592d665fb06ee6286a2ffd
+export HOMEBREW_GITHUB_API_TOKEN=af6a51286f97a9a0460ba0e95c1a4ddc36668df2
 
 # nvm
 export NVM_DIR=~/.nvm
-source /usr/local/Cellar/nvm/0.27.1/nvm.sh
+export NVM_BREW_DIR=/usr/local/Cellar/nvm/0.32.0
+# [ -s "$NVM_BREW_DIR/nvm.sh" ] && . "$NVM_BREW_DIR/nvm.sh"
 
 # rust
 export CARGO_HOME=$HOME/.cargo
@@ -57,9 +51,17 @@ if [ -f ~/.git-completion.zsh ]; then
 fi
 
 alias m="startplay"
-alias db="mysql -uzhimaa -pzhimaa fan"
+alias db="mycli -u zhimaa -p zhimaa -D fan"
 alias grep="grep --color=auto"
-alias emacs="/usr/local/Cellar/emacs-mac/emacs-24.5-z-mac-5.15/bin/emacsclient"
 alias vim="nvim"
-alias vi="macvim -v"
 alias ssh="ssh_colourful"
+alias sourcenvm="source $NVM_BREW_DIR/nvm.sh"
+
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# edit-command-line
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey '^x^E' edit-command-line
+set -k
+bindkey '^[#' pound-insert
